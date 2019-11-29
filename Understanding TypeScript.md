@@ -118,9 +118,56 @@ hit the command
 tsc <file name>
 ```
 
-To make the file automatic compile after any change in the code add `-w` tp the command, so"
+To make the file automatic compile after any change in the code add `--watch` or `-w` and this called **watch** mode tp the command, so"
 
 ``` cli
 tsc -w <file name>
 ```
+
+## compile the entire project
+
+first hit this command in the project directory
+
+``` cli
+tsc --init
+```
+
+## Exclude and Include files
+
+we exclude some file from compilation process by adding exclude : [...] property in the *tsconfig.json* and this array have all the files the directories that i do not want to compile them.
+
+In opposite to that is using `include` property to include only the files we want to compile, we can use `files` instead of `include` to specify files only without directories.
+
+## lib property
+
+Used to specify some libraries that used in the project as **dom**, when we write the code to run on the browser
+
+## sourceMap property
+
+make it equal to true allow browser to view the source code of TypeScrypt in debugger tools.
+
+## outDir
+
+tell the compiler where to save the compile output (JS files), ex:
+
+``` json
+"outDir": "./dist"
+```
+
+## rootDir
+
+tell the **compiler** to look at a specific folder as the root so it compile only this folder, ex:
+
+``` json
+"rootDir": "./src"
+```
+
+## noEmitOnError
+
+ tell the compiler not to produce output files(JS files) if there is ab error in **TypeScrypt** files, ex:
+
+``` json
+"noEmitOnError": true,
+````
+
 
