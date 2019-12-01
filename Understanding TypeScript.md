@@ -3,6 +3,8 @@
 1. [Instal](#install)
 2. [Data Types](#Data_Types)
 3. [TypeScrypt Compiler](#TypeScrypt_Compiler)
+4. [Next Gen JS and TS](#Next_Gen_JS_and_TS)
+5. [Classes & Interfaces](#Classes_&_interfaces)
 
 <br>
 
@@ -126,10 +128,20 @@ tsc -w <file name>
 
 ## compile the entire project
 
-first hit this command in the project directory
+Hit the next two commands in the project directory
 
 ``` cli
 tsc --init
+```
+
+``` cli
+tsc 
+```
+
+Or for automatic reload for any change
+
+``` cli
+tsc -w
 ```
 
 ## Exclude and Include files
@@ -168,6 +180,72 @@ tell the **compiler** to look at a specific folder as the root so it compile onl
 
 ``` json
 "noEmitOnError": true,
-````
+```
+
+# Next_Gen_JS_and_TS
+
+Nothing to add, almost everything are already known
+
+# Classes_&_interfaces
+
+## Private & Protected
+
+`private` make property can not be used outside the class even **child** class can not use private properties of **parent** class, but `protected` makes property can not be used outside the class and in the time time can be used in child class.
+
+## setters and getters (Encapsulation)
+
+we use setters to set a value to a class property specially if that property is private, so by using them we access private properties and that called **Encapsulation**
+
+And getters works in the same behavior of setters but it's used to retrieve a value of a class property specially when it  is private.
+
+In the below example we use `set` and `get` keywords to define them:
+
+``` ts
+class ITDepartment {
+    private lastReport: string;
+    constructor(report: string) {
+        this.lastReport = report;
+    }
+
+    get getLastReport() {
+        return this.lastReport
+    }
+
+    set setLastReport(report: string) {
+        this.lastReport = report
+    }
+}
+
+const ITDepartment_1 = new ITDepartment("Report___from_Rayyan");
+
+console.log(ITDepartment_1.getLastReport) // notice we don not call them as method but as a normal class property 
+ITDepartment_1.setLastReport = "Report___from_Anne" // We call them as method but as a normal class property 
+```
+
+
+## Singleton && private constructor
+
+when we enforce a class to just have one instance that is called **Singleton Pattern**, we do that the help of defining the **constructor** as private using `private` keyword, in the below example *ITDep_1* and *ITDept* are the same instance of the class *ITDepartment*:
+
+```ts
+class ITDepartment {
+    private static instance: ITDepartment;
+    private lastReport: string;
+    private constructor(id: string, report: string) {
+        this.lastReport = report;
+    }
+    static getInstance() {
+        if (this.instance) {
+            return this.instance
+        }
+        this.instance = new ITDepartment("IT", "______")
+    }
+}
+const ITDep_1 = ITDepartment.getInstance();
+const ITDep_2 = ITDepartment.getInstance();
+console.log(ITDep_1);
+console.log(ITDep_2);
+```
+
 
 
